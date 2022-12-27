@@ -4,19 +4,29 @@
     <!-- spring transaction manager -->
     <bean class="org.mycompany.process.ProcessInsert" id="_conversionSaveProcess"/>
     <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
-        <route id="_route2">
-            <from id="_to5" uri="direct:candidat"/>
-            <recipientList id="_recipientList1">
-                <method ref="RecipientList"/>
-            </recipientList>
-        </route>
-        <route id="_route3">
-            <from id="_from2" uri="seda:deuxièmeSelection"/>
-            <to id="_to6" uri="file:deuxièmeSelection"/>
-        </route>
-        <route id="_route4">
-            <from id="_from3" uri="seda:Reconversion"/>
-            <to id="_to7" uri="file:Reconversion"/>
+        <route id="_route1">
+            <from id="_from1" uri="file:RendueExam?noop=true"/>
+            <choice id="_choice1">
+                <when id="_when1">
+                    <xpath>//Exam[annee='3A']</xpath>
+                    <log id="_log1" message="Examen de 3A"/>
+                    <to id="_to1" uri="file:Exam3A"/>
+                </when>
+                <when id="_when2">
+                    <xpath>//Exam[annee='2A']</xpath>
+                    <log id="_log2" message="Examen de 2A"/>
+                    <to id="_to2" uri="file:Exam2A"/>
+                </when>
+                <when id="_when3">
+                    <xpath>//Exam[annee='5A']</xpath>
+                    <log id="_log3" message="Examen de 5A"/>
+                    <to id="_to3" uri="file:Exam5A"/>
+                </when>
+                <otherwise id="_otherwise1">
+                    <log id="_log4" message="Autres années"/>
+                    <to id="_to4" uri="file:Autre année"/>
+                </otherwise>
+            </choice>
         </route>
     </camelContext>
 </beans>
