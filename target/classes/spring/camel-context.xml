@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="        http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd        http://camel.apache.org/schema/spring       https://camel.apache.org/schema/spring/camel-spring-2.23.3.xsd">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+    <!-- spring transaction manager -->
+    <bean class="org.mycompany.process.ProcessInsert" id="_conversionSaveProcess"/>
     <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
-        <route id="_route1">
-            <from id="_from1" uri="file:support?noop=true"/>
-            <to id="_to1" uri="file:classe-virtuelle"/>
+        <route id="_route2">
+            <from id="_to5" uri="direct:candidat"/>
+            <recipientList id="_recipientList1">
+                <method ref="RecipientList"/>
+            </recipientList>
+        </route>
+        <route id="_route3">
+            <from id="_from2" uri="seda:deuxièmeSelection"/>
+            <to id="_to6" uri="file:deuxièmeSelection"/>
+        </route>
+        <route id="_route4">
+            <from id="_from3" uri="seda:Reconversion"/>
+            <to id="_to7" uri="file:Reconversion"/>
         </route>
     </camelContext>
 </beans>
