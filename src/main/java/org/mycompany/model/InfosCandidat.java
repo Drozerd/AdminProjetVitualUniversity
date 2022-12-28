@@ -1,28 +1,43 @@
 package org.mycompany.model;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name= "infosCandidat")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class InfosCandidat {
 	
+	@XmlAttribute
+	private int id;
 	private String nom;
 	private boolean Bac;
 	private int niveauPostBac;
-	private NumCandidat numCandidat;
 	
 	
-
 	public InfosCandidat() {
 		super();
 	}
-	
-	
 
-	public InfosCandidat(String nom, boolean bac, int niveauPostBac, NumCandidat numCandidat) {
+
+	public InfosCandidat(int id, String nom, boolean bac, int niveauPostBac) {
 		super();
+		this.id = id;
 		this.nom = nom;
 		Bac = bac;
 		this.niveauPostBac = niveauPostBac;
-		this.numCandidat = numCandidat;
 	}
 
+
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 
 	public String getNom() {
@@ -54,34 +69,12 @@ public class InfosCandidat {
 		this.niveauPostBac = niveauPostBac;
 	}
 
-	
-
-	public NumCandidat getNumCandidat() {
-		return numCandidat;
-	}
-
-
-
-	public void setNumCandidat(NumCandidat numCandidat) {
-		this.numCandidat = numCandidat;
-	}
-
-
 
 	@Override
 	public String toString() {
-		return "InfosCandidat [nom=" + nom + ", Bac=" + Bac + ", niveauPostBac=" + niveauPostBac + ", numCandidat="
-				+ numCandidat + "]";
+		return "InfosCandidat [id=" + id + ", nom=" + nom + ", Bac=" + Bac + ", niveauPostBac=" + niveauPostBac + "]";
 	}
 
-
-
 	
-
-
+}	
 	
-	
-	
-	
-
-}

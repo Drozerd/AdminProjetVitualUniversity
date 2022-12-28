@@ -1,8 +1,9 @@
 org\mycompany\model\Etudiant.class
+org\mycompany\process\CreaListe.class
+org\mycompany\repository\IEtudiantRepository.class
+org\mycompany\controller\AdminController.class
 org\mycompany\model\InfosCandidat.class
-org\mycompany\CandidatsRouter$1.class
 org\mycompany\model\Admin.class
 org\mycompany\process\RecipientList.class
-org\mycompany\model\NumCandidat.class
+org\mycompany\process\objecttoXml.class
 org\mycompany\Application.class
-org\mycompany\CandidatsRouter.class
